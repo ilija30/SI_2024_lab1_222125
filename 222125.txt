@@ -1,0 +1,88 @@
+4. mkdir SI_2024_lab1_222125 -> креирање на директориум
+   cd SI_2024_lab1_222125 -> промена на директориум 
+   git init -> иницијализирање на Git во директориумот
+
+5. git remote add origin https://github.com/ilija30/SI_2024_lab1_222125.git
+
+6. nano README.md -> креирам празна датотека и одма едитирам внатре
+   git add README.md -> ја ставам датотеката на сцена пред да се изврши комит и е во фаза на staged
+   git commit -m "Initial commit" -> правам верзија од досегашната дотетака модифицирана
+
+7. ги симнав фајловите и директно ги сместив во SI_2024_lab1_222125 директориумот. Локално им направив git add на сите 3 java фајлови, а потоа git commit со порака, односно
+git add SILab1Main.java
+git add SILab1_1.java
+git add SILab1_2.java
+git commit -m "Add starter code"
+
+8. бидејќи ја имам само master гранката, за да ја синхронизирам со remote repoto ја искористив командата
+git push origin master
+
+9. git branch bug1 -> креирам гранка со име bug1
+   git branch bug2 -> -||- bug2
+
+10. git checkout bug1 -> со помош на оваа команда head-ot од master се префрлува на bug1 гранката
+
+11. nano SILab1_1.java -> во 8-ма линија кај if (el.length() % 2 == 0) наместо % 2 сменив % 1, па така методот ќе ги филтрира стринговите со непарна должина
+Следно го зачувувам фајлот и правам
+git add SILab1_1.java
+git commit -m "Fix wrong condition if filterOddLengthStrings."
+
+12. git checkout bug2
+
+13. иста постапка како и кај bug1
+nano SILab1_2.java -> if (el.length() < minLength) тука во 8-ма линија наместо < ставив >= па така методот ќе ги конкатенира стринговите со должина најмалку minLnegth или поголеми
+git add SILab1_2.java
+git commit -m "Fix wrong condition in makeBigStringFrom"
+
+14. git checkout bug1
+
+15. nano SILab1Main.java
+    git add SILab1Main.java
+    git commit -m "Call method filterOddLengthStrings in main class"
+
+16. git checkout bug2
+
+17. nano SILab1Main.java
+    git add SILab1Main.java
+    git commit -m "Call method makeBigStringFrom in main class."
+
+18. git push origin bug2
+    git checkout bug1 -> git push origin bug1
+    git checkout master -> git push origin master
+
+19. git checkout master
+
+20. git merge bug1
+    Не јавува никаков конфликт, успешно се спојува гранката bug1       со master и се користи Fast-Forward 
+
+21. git push origin master 
+    git push origin bug1
+    git push origin bug2
+
+22. git checkout bug2
+
+23. git rebase master
+Тука јавува конфликт, бидејќи имаме промена во иста линија, односно линија 16 кај bug1 и bug2 гранките. За да го решиме овој конфликт имаме 3 опции. Кај bug1 да направиме промена во линија 16, кај bug2, или пак да ги оставиме и двете линии како што се и да продолжиме со командата git rebase --continue. Јас конфликтот го решив на третиот начин, па така прво ја извршив оваа функција
+git add SILab1Main.java, па потоа
+git rebase --continue
+Тука исто така се користи fast-forward
+
+24. git checkout master
+
+25. git merge bug2
+Не јавува никаков конфликт, успешно се спојува гранката bug2      со master и се користи Fast-Forward 
+
+26. git push origin master (успешно се извршува)
+    git push origin bug1 (up-to-date)
+    git push origin (rejected) -> git push origin --force bug2
+
+28. nano logs.txt
+    git log -> copy -> paste во logs.txt
+    nano 222125.txt
+    git add logs.txt
+    git add 222125.txt
+    git commit -m "Final commit."
+
+29. git push origin master
+    git push origin bug1
+    git push origin bug2 
